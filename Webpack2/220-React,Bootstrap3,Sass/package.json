@@ -1,0 +1,21 @@
+//@@@ Change this file so that all of the webpack dependencies are listed in devDependencies, and only the normal react, bootstrap, and SASS dependencies are listed for runtime.
+
+{
+  "name": "react-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick@Steranka.com",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.5.3"
+  },
+  "dependencies": {
+    "react": "^15.6.1"
+  }
+}

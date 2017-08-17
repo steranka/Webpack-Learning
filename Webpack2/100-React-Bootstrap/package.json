@@ -1,0 +1,23 @@
+//@@@ Change this file so that all of the webpack dependencies are listed in devDependencies
+{
+  "name": "react-bootstrap-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick@Steranka.com",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.5.3"
+  },
+  "dependencies": {
+    "react": "^15.6.1"
+  }
+}

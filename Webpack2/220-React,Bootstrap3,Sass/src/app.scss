@@ -1,0 +1,19 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #0079F2;
+
+body {
+    font: 100% $font-stack;
+    color: $primary-color;
+    background: #F2EC56;
+}
+
+// This is normal CSS.  SCSS is a superset of CSS
+// So just copy/paste your normal CSS and you can use it!
+.myred {
+    background: indianred;
+    color: #0f0f0f;
+}
+
+button {
+    background: lightpink;
+}
