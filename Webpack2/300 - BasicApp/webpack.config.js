@@ -37,7 +37,7 @@ var config = {
             },
             {
                 test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader ']
+                use: [ 'style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -46,7 +46,7 @@ var config = {
         ]
     },
     plugins: [
-        new htmlWebpackPlugin({ template: 'index.html'})
+        new htmlWebpackPlugin({ template: 'src/index.html'})
     ]
 }
 
