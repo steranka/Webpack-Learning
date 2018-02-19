@@ -34,4 +34,7 @@ To compile and run the application for development use.
     
 This starts a browser on localhost:3000.
 
-The webpack configuration file 
+The webpack configuration file should support
+
+- Hot Module Reload
+
