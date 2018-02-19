@@ -7,6 +7,9 @@
     "dev": "webpack-dev-server",
     "dev-orig": "npm run clean && webpack -d --watch",
     "build": "webpack -d",
+    "build-dev": "webpack -d",
+    "build-prod": "NODE_ENV=production && yarn clean && webpack -p",
+    "deploy-gh": "yarn build && git subtree push --dist origin gh-pages",
     "http-server": "http-server dist",
     "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
