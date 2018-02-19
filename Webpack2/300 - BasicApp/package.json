@@ -4,8 +4,9 @@
   "description": "This application was developed during a Webpack training video I watched.\r The video is called Webpack for React Applications was on Safari Online Books.\r  https://www.safaribooksonline.com/library/view/webpack-for-react/9781788472203/video2_1.html",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack -d --watch",
+    "dev": "npm run clean && webpack -d --watch",
     "http-server": "http-server dist",
+    "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -21,6 +22,7 @@
     "image-webpack-loader": "^4.1.0",
     "node-sass": "^4.7.2",
     "react-router-dom": "^4.2.2",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
     "webpack": "2.6.1"

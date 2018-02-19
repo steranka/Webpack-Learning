@@ -108,7 +108,14 @@ Using package called rimraf.
 
     yarn add rimraf -D
 
+Update the package.json file
 
+    "scripts": {
+      "clean": "rimraf dist",
+
+After those changes you can clean up the dist directory by running:
+
+    npm run clean
 
  
 
