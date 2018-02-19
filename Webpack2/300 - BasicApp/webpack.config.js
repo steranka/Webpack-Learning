@@ -3,6 +3,8 @@
 var webpack = require('webpack');
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+
+// Array of packages we want to be putting in the vendor bundle.
 const VENDOR_LIBS = [
     'react', 'react-dom', 'react-router-dom'
 ]
@@ -18,10 +20,14 @@ var APP_DIR = path.join(__dirname, 'src');
 // }
 //
 var config = {
-    entry: APP_DIR + '/app.js',
+    // entry: APP_DIR + '/app.js',
+    entry: {
+        bundle: APP_DIR + '/app.js',
+        vendor: VENDOR_LIBS
+    },
     output: {
         path: BUIILD_DIR,
-        filename: 'app.bundle.js'
+        filename: '[name].[chunkhash].js'
     },
     module: {
         rules: [
@@ -46,8 +52,11 @@ var config = {
         ]
     },
     plugins: [
-        new htmlWebpackPlugin({ template: 'src/index.html'})
-    ]
+        new htmlWebpackPlugin({ template: 'src/index.html'}),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest' ]
+        })
+    ],
 }
 
 module.exports = config;
