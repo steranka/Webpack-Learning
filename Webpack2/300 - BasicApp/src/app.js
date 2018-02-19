@@ -6,7 +6,7 @@ import './app.scss';
 
 class App extends React.Component {
     render() {
-        return <p>Hello React!</p>;
+        return <p>Hello React! Ain't that great</p>;
     }
 }
 

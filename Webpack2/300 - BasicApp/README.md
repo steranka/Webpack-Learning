@@ -117,58 +117,81 @@ After those changes you can clean up the dist directory by running:
 
     npm run clean
 
+## Switching from http-server to WebPack DevServer
+
+    yarn add webpack-dev-server -D
+
+By running Webpack Dev Server you get hot module reloading 
+automatically!  
  
+## Enabling Hot Module Reloading
+
+- Enable Hot Module Reloading on DevServer
+    devServer: {
+    // . . .
+        hot: true
+
+This produces an Uncaught Error: [HMR] Hot Module Replacement is disabled.
+error message.
+![HMR Error](images/HotModuleReplacement-Failed.png)
+
+To fix that error you need to add a plugin 
+
+- Added HotModuleReplacementPlugin to webpack config plugins section 
+
+    plugins: [
+        // . . .
+        new webpack.HotModuleReplacementPlugin()
+    ],
+
+![HMR Works](images/HotModuleReplacement-Works.png)
+
+But when building webpack compiler reports an error
+
+    ERROR in chunk manifest [entry]
+    [name].[chunkhash].js
+    Cannot use [chunkhash] for chunk in '[name].[chunkhash].js' (use [hash] instead)
+
+To fix that error you need to change [chunkhash] to hash
+
+- Changed [hashchunk]
+
+    output: {
+        path: BUILD_DIR,
+        filename: '[name].[hash].js'
+    },
+
+Note that when going to production you might want to use [chunkhash]
+but for developmentment [hash] is the best way to go.
+
+## Lazy Loading
+
+    yarn add babel-plugin-syntax-dynamic-import -D
+    yarn add react-loadable
+
+Changing webpack.config.js as follows.  It was this:
+
+     test: /\.(js|jsx)$/,
+     exclude: /node_modules/,
+     use: 'babel-loader'
+ 
+And it was changed to:
+
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    loader: 'babel-loader',
+    options: {
+        babelrc: false,
+        presets: ["babel-preset-env", "react", "stage-2"],
+        plugins: ['syntax-dynamic-import']
+    }
+
+I needed to add the missing packages
+
+    yarn add babel-preset-env -D
+    yarn add babel-preset-stage-2 -D
+
 
 # What my webpack.config.js file looks like
+[webpack.config.js](./webpack.config.js)
 
-
-
-    var webpack = require('webpack');
-    var path = require('path');
-    
-    var BUIILD_DIR = path.join(__dirname, 'dist');
-    var APP_DIR = path.join(__dirname, 'src');
-    
-    // module.exports = {
-    //     entry: './src/app.js',
-    //     output: {
-    //         filename: './dist/app.bundle.js'
-    //     }
-    // }
-    //
-    var config = {
-        entry: APP_DIR + '/app.js',
-        output: {
-            path: BUIILD_DIR,
-            filename: 'app.bundle.js'
-        },
-        module: {
-            loaders: [
-                {
-                    test: /\.(js|jsx)$/,
-                    //include: APP_DIR,
-                    exclude: /node_modules/,
-                    use: 'babel-loader'
-                },
-                {
-                    test: /\.css$/,
-                    use: [ 'style-loader', 'css-loader' ]
-                },
-                {
-                    test: /\.(jpe?g|png|gif|svg)$/i,
-                    use: 'file-loader'
-                }
-            ]
-        }
-    }
-    
-    module.exports = config;
-
-
-    
-    
-    
-
-
- 
- 

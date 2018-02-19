@@ -4,7 +4,9 @@
   "description": "This application was developed during a Webpack training video I watched.\r The video is called Webpack for React Applications was on Safari Online Books.\r  https://www.safaribooksonline.com/library/view/webpack-for-react/9781788472203/video2_1.html",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run clean && webpack -d --watch",
+    "dev": "webpack-dev-server",
+    "dev-orig": "npm run clean && webpack -d --watch",
+    "build": "webpack -d",
     "http-server": "http-server dist",
     "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,8 +16,11 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.9",
     "file-loader": "^1.1.6",
     "http-server": "^0.11.1",
@@ -25,11 +30,13 @@
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2",
-    "webpack": "2.6.1"
+    "webpack": "2.6.1",
+    "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
     "html-webpack-plugin": "^2.30.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-loadable": "^5.3.1"
   }
 }

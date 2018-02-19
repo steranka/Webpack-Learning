@@ -9,7 +9,7 @@ const VENDOR_LIBS = [
     'react', 'react-dom', 'react-router-dom'
 ]
 
-var BUIILD_DIR = path.join(__dirname, 'dist');
+var BUILD_DIR = path.join(__dirname, 'dist');
 var APP_DIR = path.join(__dirname, 'src');
 
 // module.exports = {
@@ -26,8 +26,8 @@ var config = {
         vendor: VENDOR_LIBS
     },
     output: {
-        path: BUIILD_DIR,
-        filename: '[name].[chunkhash].js'
+        path: BUILD_DIR,
+        filename: '[name].[hash].js'
     },
     module: {
         rules: [
@@ -35,7 +35,12 @@ var config = {
                 test: /\.(js|jsx)$/,
                 //include: APP_DIR,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                loader: 'babel-loader',
+                options: {
+                    babelrc: false,
+                    presets: ["babel-preset-env", "react", "stage-2"],
+                    plugins: ['syntax-dynamic-import']
+                }
             },
             {
                 test: /\.css$/,
@@ -51,11 +56,23 @@ var config = {
             }
         ]
     },
+    devServer: {
+        contentBase: BUILD_DIR,
+        compress: true,
+        port: 9000,
+        disableHostCheck: false,
+        headers: {
+            "X-Custom-header" : "custom"
+        },
+        //open: true, // Tells webpack to open a browser tab to the website when starting
+        hot: true
+    },
     plugins: [
-        new htmlWebpackPlugin({ template: 'src/index.html'}),
-        new webpack.optimize.CommonsChunkPlugin({
+        new htmlWebpackPlugin({ template: 'src/index.html'})
+        , new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest' ]
         })
+        , new webpack.HotModuleReplacementPlugin()
     ],
 }
 
