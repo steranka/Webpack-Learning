@@ -7,7 +7,8 @@ module.exports = {
   },
   // Whenever files change rebundle
   watch: true,
-  devtool: 'source-map',
+  // No source map
+  // devtool: 'source-map',
   // See https://github.com/babel/babel-loader
   module: {
     rules: [
@@ -25,6 +26,17 @@ module.exports = {
         test: /\.s?css$/,
         exclude: /(node_modules|bower_components)/,
         use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+      },
+      {
+        test: /.js$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: `jshint-loader`,
+            // options: {...options}
+          }
+        ]
       }
     ]
   }
