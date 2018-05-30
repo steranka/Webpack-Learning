@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plain Javascript (no webpack)</title>
+  <script src="my_library.js"></script>
+</head>
+<body>
+    <p>This is a plain javascript example.  The following div will be replaced by Javascript.</p>
+    <div id="replaceMe">If this is working, you won't see this!</div>
+    <p>After the div.</p>
+<script>
+  console.log('calling MyLibrary.doSomething()');
+  MyLibrary.doSomething();
+</script>
+</body>
+</html>
